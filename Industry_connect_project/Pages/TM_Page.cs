@@ -73,7 +73,7 @@ namespace Industry_connect_project.Pages
             IWebElement timeEditOption = driver.FindElement(By.Id("TypeCode_option_selected"));
 
 
-            if (timeEditOption.Selected)
+            if (!timeEditOption.Selected)
             {
                 IWebElement materialOption = driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[1]"));
                 materialOption.Click();
@@ -106,44 +106,62 @@ namespace Industry_connect_project.Pages
             //click on save button
             IWebElement saveEditButton = driver.FindElement(By.Id("SaveButton"));
             saveEditButton.Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             IWebElement gotoeditLastpageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             gotoeditLastpageButton.Click();
+            Thread.Sleep(1000);
+
+            //go to the last page
+            IWebElement gotoLastpageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+            gotoLastpageButton.Click();
             Thread.Sleep(2000);
 
             //check if record has been updated
+
             IWebElement editRow = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            string editCode = editRow.GetAttribute("Code");
-            string editDescription = editRow.GetAttribute("Description");
-            string editPrice = editRow.GetAttribute("Price");
-            Console.WriteLine(editCode);
-            if ((editCode == "Edit5") && (editDescription == "NovemberEdit5") && (editPrice == "40"))
-            {
-                Console.WriteLine("record updated");
+            Thread.Sleep(1000);  
+               
+            if(editRow.Text  == "Edit5")
+            { 
+                Console.WriteLine("Time record is updated");
             }
             else
             {
-                Console.WriteLine("test Failed");
-                Console.WriteLine(editCode);
-                Console.WriteLine(editDescription);
-                Console.WriteLine(editPrice);
+                Console.WriteLine("Test failed");
             }
-
-
+        
         }
         public void DeleteTM(IWebDriver driver)
         {
 
-            //click on delete button
-            IWebElement gotodeleteButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[1]/td[5]/a[2]"));
-            gotodeleteButton.Click();
-            //var rowId = gotodeleteButton.GetAttribute("data-uid");              
+            //click on last page
+            Thread.Sleep(1000);
+            IWebElement gotoLastpageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+            gotoLastpageButton.Click();
+            Thread.Sleep(1000);
 
+            //click on delete button
+            IWebElement gotodeleteButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+            gotodeleteButton.Click();
+           
             //click ok on popup window
             IAlert alert = driver.SwitchTo().Alert();
             Thread.Sleep(500);
             alert.Accept();
-            Console.WriteLine("record deleted");
+
+
+            //check record is deleted
+            Thread.Sleep(2000);
+            IWebElement deleteRow = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            
+            if (deleteRow.Text == "Edit5")
+            {
+                Console.WriteLine("REcord is not deleted.Test failed");
+            }
+            else
+            {
+                Console.WriteLine("Record is deleted successfully.");
+            }
             
         }
     }
