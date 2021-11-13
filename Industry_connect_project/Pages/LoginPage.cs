@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Industry_connect_project.utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -6,12 +7,15 @@ using System.Text;
 
 namespace Industry_connect_project.Pages
 {
-    class LoginPage
+    class LoginPage : CommonDriver
     {
         public void loginsteps(IWebDriver driver)
         {
             try
             {
+                //maximize window
+                driver.Manage().Window.Maximize();
+
                 //launch turnup portal
                 driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
 
