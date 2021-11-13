@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Industry_connect_project.utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Industry_connect_project.Pages
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
             Thread.Sleep(2000);
-
+            
             //go to the last page
             IWebElement gotoLastpageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             gotoLastpageButton.Click();

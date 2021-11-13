@@ -12,8 +12,7 @@ namespace Industry_connect_project
     [TestFixture]
     class TM_Tests : CommonDriver
     {
-                         
-        [Test]
+        [Test, Order(1), Description("check if user is able to create time record with valid data")]
         public void CreateTMTest()
         {
             //TM Page object intialization and defination
@@ -22,7 +21,8 @@ namespace Industry_connect_project
             tm_Page.CreateTM(driver);
         }
 
-        [Test]
+        [Test,Order(2),Description("Check if user is able to update Time record")]
+
         public void EditTMTest()
         {
             //TM Page object intialization and defination
@@ -30,12 +30,14 @@ namespace Industry_connect_project
             //edit TM
             tm_Page.EditTM(driver);
         }
-        
-        [Test]
+
+        [Test, Order(3), Description("Check if user is able to delete Time record")]
+
         public void DeleteTMTest()
         {
             //TM Page object intialization and defination
             TM_Page tm_Page = new TM_Page();
+            
             //Delete TM
             tm_Page.DeleteTM(driver);
 
