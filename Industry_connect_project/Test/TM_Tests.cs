@@ -10,14 +10,21 @@ using System.Threading;
 namespace Industry_connect_project
 {
     [TestFixture]
+    [Parallelizable]
     class TM_Tests : CommonDriver
     {
         [Test, Order(1), Description("check if user is able to create time record with valid data")]
         public void CreateTMTest()
         {
-            //TM Page object intialization and defination
+            HomePage homePage = new HomePage();
+            homePage.gotoTMpage(driver);
+
+            // TM Page object intialization and defination
+
             TM_Page tm_Page = new TM_Page();
-            //create TM
+           
+            // Create TM
+
             tm_Page.CreateTM(driver);
         }
 
@@ -25,9 +32,12 @@ namespace Industry_connect_project
 
         public void EditTMTest()
         {
-            //TM Page object intialization and defination
+            // TM Page object intialization and defination
+
             TM_Page tm_Page = new TM_Page();
-            //edit TM
+            
+            // Edit TM
+
             tm_Page.EditTM(driver);
         }
 
@@ -35,10 +45,12 @@ namespace Industry_connect_project
 
         public void DeleteTMTest()
         {
-            //TM Page object intialization and defination
+            // TM Page object intialization and defination
+
             TM_Page tm_Page = new TM_Page();
             
-            //Delete TM
+            // Delete TM
+
             tm_Page.DeleteTM(driver);
 
         }

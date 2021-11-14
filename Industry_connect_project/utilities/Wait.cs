@@ -9,7 +9,8 @@ namespace Industry_connect_project.utilities
     class Wait
     {
 
-        //reusable function for wait
+        // Reusable function for wait
+        
         public static void WaitToBEClickable(IWebDriver driver, string locator,string locatorvalue,int seconds)
         {
             var wait = new WebDriverWait(driver,new TimeSpan(0,0,seconds));
@@ -26,6 +27,7 @@ namespace Industry_connect_project.utilities
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.CssSelector(locatorvalue)));
             }
         }
+
         public static void WaitToBeVisible(IWebDriver driver, string locator, string locatorvalue, int seconds)
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
